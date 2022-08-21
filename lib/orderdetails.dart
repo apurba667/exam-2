@@ -12,6 +12,8 @@ class OrderDetails extends StatefulWidget {
 
 class _OrderDetailsState extends State<OrderDetails> {
   int value = 0;
+  var subtotal = 0;
+  int total = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +57,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                           onTap: () {
                             setState(() {
                               value++;
+                              subtotal = widget.model!.price! * value;
+                              total = subtotal + 10;
                             });
                           },
                           child: Icon(
@@ -72,7 +76,11 @@ class _OrderDetailsState extends State<OrderDetails> {
                         InkWell(
                           onTap: () {
                             setState(() {
-                              value--;
+                              if (value > 0) {
+                                value--;
+                                subtotal = widget.model!.price! * value;
+                                total = subtotal + 10;
+                              }
                             });
                           },
                           child: Icon(
@@ -87,9 +95,125 @@ class _OrderDetailsState extends State<OrderDetails> {
               ],
             ),
             Text("Delivery Location"),
+            SizedBox(
+              height: 20,
+            ),
             Row(
-              children: [],
-            )
+              children: [
+                Icon(
+                  Icons.message,
+                  color: Colors.blue,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: [
+                    Text("2 Place Mohakhali St"),
+                    Text("10162,tb&isi")
+                  ],
+                ),
+                SizedBox(
+                  width: 150,
+                ),
+                Icon(
+                  Icons.arrow_right,
+                  size: 36,
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text("Payment Method"),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.payment,
+                  color: Colors.blue,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: [Text("Visa Classic"), Text("10162,tb&isi")],
+                ),
+                SizedBox(
+                  width: 200,
+                ),
+                Icon(
+                  Icons.arrow_right,
+                  size: 36,
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Order Info",
+              style: TextStyle(color: Colors.black, fontSize: 26),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Subtotal"),
+                Text(
+                  "\$${subtotal}",
+                  style: TextStyle(fontSize: 26),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Shipping Cost"),
+                Text(
+                  "\$10",
+                  style: TextStyle(fontSize: 26),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Total"),
+                Text(
+                  "\$${total}",
+                  style: TextStyle(fontSize: 26),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 150,
+            ),
+            Container(
+                height: 50,
+                width: 370,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(12)),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 100),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Check Out",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "\$${total}",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ))
           ],
         ),
       ),

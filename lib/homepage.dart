@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
               height: 200,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: myList.length,
+                  itemCount: myList2.length,
                   itemBuilder: (context, index) {
                     return Padding(
                         child: Container(
@@ -138,20 +138,20 @@ class _HomePageState extends State<HomePage> {
                                     topLeft: Radius.circular(20),
                                     topRight: Radius.circular(20)),
                                 child: Image.network(
-                                  "${myList[index].img}",
+                                  "${myList2[index].img}",
                                   height: 130,
                                   width: 150,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                               Text(
-                                "${myList[index].name}",
+                                "${myList2[index].name}",
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
                               ),
-                              Text("${myList[index].price}")
+                              Text("${myList2[index].price}")
                             ],
                           ),
                         ),
